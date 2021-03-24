@@ -5,7 +5,6 @@ import { ProductList } from './styles';
 import { api } from '../../services/api';
 import { formatPrice } from '../../util/format';
 import { useCart } from '../../hooks/useCart';
-import Cart from '../Cart';
 
 interface Product {
   id: number;
@@ -25,7 +24,6 @@ interface CartItemsAmount {
 const Home = (): JSX.Element => {
   const [products, setProducts] = useState<ProductFormatted[]>([]);
   const { addProduct, cart } = useCart();
-  const [unformatedProducts, setUnformatedProducts] = useState<Product[]>([])
 
   const cartItemsAmount = cart.reduce((sumAmount, product) => {
     sumAmount[product.id] = product.amount
@@ -44,8 +42,6 @@ const Home = (): JSX.Element => {
       })
 
       setProducts(formatingData)
-
-      console.log(products)
     }
 
     loadProducts();
